@@ -1,0 +1,386 @@
+# Logfile created on 2016-10-26 11:33:31 +0200 by logger.rb/53141
+I, [2016-10-26T11:33:31.605991 #17694]  INFO -- : Migrating database
+I, [2016-10-26T11:33:31.612607 #17694]  INFO -- : (0.000981s) PRAGMA foreign_keys = 1
+I, [2016-10-26T11:33:31.612694 #17694]  INFO -- : (0.000026s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T11:33:31.612844 #17694]  INFO -- : (0.000099s) SELECT sqlite_version()
+I, [2016-10-26T11:33:31.613121 #17694]  INFO -- : (0.000050s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T11:33:31.613528 #17694]  INFO -- : (0.000300s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:31.613729 #17694]  INFO -- : (0.000078s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:31.613932 #17694]  INFO -- : (0.000071s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:31.614094 #17694]  INFO -- : (0.000063s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:31.614261 #17694]  INFO -- : Mounting HAL browser
+I, [2016-10-26T11:33:31.614292 #17694]  INFO -- : Mounting UI
+I, [2016-10-26T11:33:31.985595 #17694]  INFO -- : (0.000310s) PRAGMA table_info('pacticipants')
+I, [2016-10-26T11:33:31.988548 #17694]  INFO -- : (0.000199s) PRAGMA table_info('tags')
+I, [2016-10-26T11:33:32.028458 #17694]  INFO -- : (0.000294s) PRAGMA table_info('versions')
+I, [2016-10-26T11:33:32.032267 #17694]  INFO -- : (0.000187s) PRAGMA table_info('pacts')
+I, [2016-10-26T11:33:54.110919 #17743]  INFO -- : Migrating database
+I, [2016-10-26T11:33:54.115453 #17743]  INFO -- : (0.000567s) PRAGMA foreign_keys = 1
+I, [2016-10-26T11:33:54.115545 #17743]  INFO -- : (0.000020s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T11:33:54.115680 #17743]  INFO -- : (0.000089s) SELECT sqlite_version()
+I, [2016-10-26T11:33:54.115936 #17743]  INFO -- : (0.000045s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T11:33:54.116129 #17743]  INFO -- : (0.000091s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:54.116303 #17743]  INFO -- : (0.000065s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:54.116511 #17743]  INFO -- : (0.000079s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:54.116665 #17743]  INFO -- : (0.000060s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:33:54.116825 #17743]  INFO -- : Mounting HAL browser
+I, [2016-10-26T11:33:54.116847 #17743]  INFO -- : Mounting UI
+I, [2016-10-26T11:33:54.386133 #17743]  INFO -- : (0.000294s) PRAGMA table_info('pacticipants')
+I, [2016-10-26T11:33:54.388466 #17743]  INFO -- : (0.000134s) PRAGMA table_info('tags')
+I, [2016-10-26T11:33:54.408533 #17743]  INFO -- : (0.000179s) PRAGMA table_info('versions')
+I, [2016-10-26T11:33:54.411771 #17743]  INFO -- : (0.000169s) PRAGMA table_info('pacts')
+I, [2016-10-26T12:40:42.975010 #27525]  INFO -- : Migrating database
+I, [2016-10-26T12:40:42.984231 #27525]  INFO -- : (0.001187s) PRAGMA foreign_keys = 1
+I, [2016-10-26T12:40:42.984367 #27525]  INFO -- : (0.000055s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T12:40:42.984558 #27525]  INFO -- : (0.000128s) SELECT sqlite_version()
+I, [2016-10-26T12:40:42.984894 #27525]  INFO -- : (0.000075s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T12:40:42.985489 #27525]  INFO -- : (0.000465s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:40:42.985832 #27525]  INFO -- : (0.000126s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:40:42.986064 #27525]  INFO -- : (0.000086s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:40:42.986255 #27525]  INFO -- : (0.000075s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:40:42.986690 #27525]  INFO -- : Begin applying migration version 22, direction: up
+E, [2016-10-26T12:40:42.986848 #27525] ERROR -- : SQLite3::SQLException: no such view: latest_tagged_pact_consumer_version_orders: DROP VIEW `latest_tagged_pact_consumer_version_orders`
+I, [2016-10-26T12:40:42.988359 #27525]  INFO -- : (0.001262s) CREATE VIEW `latest_tagged_pact_consumer_version_orders` AS select provider_id, consumer_id, t.name as tag_name, max(consumer_version_order) as latest_consumer_version_order
+      from all_pacts ap
+      inner join tags t
+      on t.version_id = ap.consumer_version_id
+      group by provider_id, consumer_id, t.name
+E, [2016-10-26T12:40:42.988530 #27525] ERROR -- : SQLite3::SQLException: no such view: latest_tagged_pacts: DROP VIEW `latest_tagged_pacts`
+I, [2016-10-26T12:40:42.989620 #27525]  INFO -- : (0.000906s) CREATE VIEW `latest_tagged_pacts` AS select ap.*, lp.tag_name
+      from all_pacts ap
+      inner join latest_tagged_pact_consumer_version_orders lp
+      on ap.consumer_id = lp.consumer_id
+        and ap.provider_id = lp.provider_id
+        and ap.consumer_version_order = latest_consumer_version_order
+I, [2016-10-26T12:40:42.990525 #27525]  INFO -- : (0.000763s) UPDATE `schema_info` SET `version` = 22
+I, [2016-10-26T12:40:42.990578 #27525]  INFO -- : Finished applying migration version 22, direction: up, took 0.003886 seconds
+I, [2016-10-26T12:40:42.990699 #27525]  INFO -- : Mounting HAL browser
+I, [2016-10-26T12:40:42.990724 #27525]  INFO -- : Mounting UI
+I, [2016-10-26T12:40:43.241558 #27525]  INFO -- : (0.000305s) PRAGMA table_info('pacticipants')
+I, [2016-10-26T12:40:43.245359 #27525]  INFO -- : (0.000152s) PRAGMA table_info('tags')
+I, [2016-10-26T12:40:43.247381 #27525]  INFO -- : (0.000172s) PRAGMA table_info('versions')
+I, [2016-10-26T12:40:43.257069 #27525]  INFO -- : (0.000318s) PRAGMA table_info('pact_version_contents')
+I, [2016-10-26T12:40:43.258488 #27525]  INFO -- : (0.000167s) PRAGMA table_info('pacts')
+I, [2016-10-26T12:40:43.261254 #27525]  INFO -- : (0.000276s) PRAGMA table_info('all_pacts')
+I, [2016-10-26T12:40:43.263937 #27525]  INFO -- : (0.000322s) PRAGMA table_info('latest_pacts')
+I, [2016-10-26T12:40:43.265356 #27525]  INFO -- : (0.000365s) PRAGMA table_info('latest_tagged_pacts')
+I, [2016-10-26T12:40:43.420572 #27525]  INFO -- : (0.000281s) PRAGMA table_info('webhooks')
+I, [2016-10-26T12:40:43.422286 #27525]  INFO -- : (0.000121s) PRAGMA table_info('webhook_headers')
+I, [2016-10-26T12:40:43.450082 #27525]  INFO -- : Mounting PactBroker::API
+I, [2016-10-26T12:40:49.970593 #27525]  INFO -- : (0.006866s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:41:05.945287 #27525]  INFO -- : (0.000617s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Zoo App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:41:05.947101 #27525]  INFO -- : (0.001040s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:41:10.325476 #27525]  INFO -- : (0.000377s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Animal Service' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:41:10.326646 #27525]  INFO -- : (0.000937s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:41:22.450879 #27621]  INFO -- : Migrating database
+I, [2016-10-26T12:41:22.460543 #27621]  INFO -- : (0.000913s) PRAGMA foreign_keys = 1
+I, [2016-10-26T12:41:22.460658 #27621]  INFO -- : (0.000028s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T12:41:22.460892 #27621]  INFO -- : (0.000160s) SELECT sqlite_version()
+I, [2016-10-26T12:41:22.461367 #27621]  INFO -- : (0.000143s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T12:41:22.461833 #27621]  INFO -- : (0.000265s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:41:22.462219 #27621]  INFO -- : (0.000162s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:41:22.462576 #27621]  INFO -- : (0.000164s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:41:22.463056 #27621]  INFO -- : (0.000291s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T12:41:22.463375 #27621]  INFO -- : Mounting HAL browser
+I, [2016-10-26T12:41:22.463414 #27621]  INFO -- : Mounting UI
+I, [2016-10-26T12:41:22.735100 #27621]  INFO -- : (0.000331s) PRAGMA table_info('pacticipants')
+I, [2016-10-26T12:41:22.739354 #27621]  INFO -- : (0.000185s) PRAGMA table_info('tags')
+I, [2016-10-26T12:41:22.742665 #27621]  INFO -- : (0.000210s) PRAGMA table_info('versions')
+I, [2016-10-26T12:41:22.753032 #27621]  INFO -- : (0.000315s) PRAGMA table_info('pact_version_contents')
+I, [2016-10-26T12:41:22.754711 #27621]  INFO -- : (0.000216s) PRAGMA table_info('pacts')
+I, [2016-10-26T12:41:22.758448 #27621]  INFO -- : (0.000464s) PRAGMA table_info('all_pacts')
+I, [2016-10-26T12:41:22.761963 #27621]  INFO -- : (0.000440s) PRAGMA table_info('latest_pacts')
+I, [2016-10-26T12:41:22.764730 #27621]  INFO -- : (0.000483s) PRAGMA table_info('latest_tagged_pacts')
+I, [2016-10-26T12:41:22.927959 #27621]  INFO -- : (0.000304s) PRAGMA table_info('webhooks')
+I, [2016-10-26T12:41:22.930133 #27621]  INFO -- : (0.000150s) PRAGMA table_info('webhook_headers')
+I, [2016-10-26T12:41:22.962380 #27621]  INFO -- : Mounting PactBroker::API
+I, [2016-10-26T12:41:30.171505 #27621]  INFO -- : (0.004269s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:42:20.983964 #27621]  INFO -- : (0.000759s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:44:11.322254 #27621]  INFO -- : (0.000302s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (`consumer_version_number` LIKE '1.0.0' ESCAPE '\')) LIMIT 1
+I, [2016-10-26T12:44:11.365103 #27621]  INFO -- : (0.000227s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (`consumer_version_number` LIKE '1.0.0' ESCAPE '\')) LIMIT 1
+I, [2016-10-26T12:44:11.365790 #27621]  INFO -- : (0.000486s) SELECT `name` FROM `pacticipants` ORDER BY `name`
+I, [2016-10-26T12:44:11.366199 #27621]  INFO -- : (0.000165s) SELECT `name` FROM `pacticipants` ORDER BY `name`
+I, [2016-10-26T12:44:11.366840 #27621]  INFO -- : (0.000193s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (`consumer_version_number` LIKE '1.0.0' ESCAPE '\')) LIMIT 1
+I, [2016-10-26T12:44:11.367092 #27621]  INFO -- : (0.000097s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Stock Service' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:44:11.368387 #27621]  INFO -- : (0.000057s) BEGIN
+I, [2016-10-26T12:44:11.371308 #27621]  INFO -- : (0.000671s) INSERT INTO `pacticipants` (`name`, `repository_url`, `created_at`, `updated_at`) VALUES ('Stock Service', NULL, '2016-10-26 10:44:11.367678', '2016-10-26 10:44:11.367678')
+I, [2016-10-26T12:44:11.371815 #27621]  INFO -- : (0.000261s) SELECT * FROM `pacticipants` WHERE (`id` = 3) LIMIT 1
+I, [2016-10-26T12:44:11.372553 #27621]  INFO -- : (0.000670s) COMMIT
+I, [2016-10-26T12:44:11.372927 #27621]  INFO -- : (0.000166s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:44:11.373158 #27621]  INFO -- : (0.000030s) BEGIN
+I, [2016-10-26T12:44:11.376275 #27621]  INFO -- : (0.002920s) INSERT INTO `pacticipants` (`name`, `repository_url`, `created_at`, `updated_at`) VALUES ('Catalog App', NULL, '2016-10-26 10:44:11.373046', '2016-10-26 10:44:11.373046')
+I, [2016-10-26T12:44:11.376733 #27621]  INFO -- : (0.000264s) SELECT * FROM `pacticipants` WHERE (`id` = 4) LIMIT 1
+I, [2016-10-26T12:44:11.377488 #27621]  INFO -- : (0.000696s) COMMIT
+I, [2016-10-26T12:44:11.377866 #27621]  INFO -- : (0.000125s) SELECT * FROM `versions` WHERE ((`number` = '1.0.0') AND (`pacticipant_id` = 4)) LIMIT 1
+I, [2016-10-26T12:44:11.377905 #27621]  INFO -- : Creating version 1.0.0 for pacticipant_id=4
+I, [2016-10-26T12:44:11.378776 #27621]  INFO -- : (0.000040s) BEGIN
+I, [2016-10-26T12:44:11.379493 #27621]  INFO -- : (0.000530s) INSERT INTO `versions` (`number`, `pacticipant_id`, `created_at`, `updated_at`) VALUES ('1.0.0', 4, '2016-10-26 10:44:11.378599', '2016-10-26 10:44:11.378599')
+I, [2016-10-26T12:44:11.379902 #27621]  INFO -- : (0.000262s) SELECT * FROM `versions` WHERE (`pacticipant_id` = 4)
+I, [2016-10-26T12:44:11.380709 #27621]  INFO -- : (0.000104s) UPDATE `versions` SET `order` = 0, `updated_at` = '2016-10-26 10:44:11.380377' WHERE (`id` = 3)
+I, [2016-10-26T12:44:11.381059 #27621]  INFO -- : (0.000192s) SELECT * FROM `versions` WHERE (`id` = 3) LIMIT 1
+I, [2016-10-26T12:44:11.381831 #27621]  INFO -- : (0.000708s) COMMIT
+I, [2016-10-26T12:44:11.382413 #27621]  INFO -- : (0.000289s) SELECT * FROM `versions` WHERE (`id` = 3) LIMIT 1
+I, [2016-10-26T12:44:11.382794 #27621]  INFO -- : (0.000194s) SELECT * FROM `all_pacts` WHERE ((`consumer_version_id` = 3) AND (`provider_id` = 3)) LIMIT 1
+I, [2016-10-26T12:44:11.382867 #27621]  INFO -- : Creating new pact version with params {:consumer_name=>"Catalog App", :provider_name=>"Stock Service", :consumer_version_number=>"1.0.0", :consumer_name_in_pact=>"Catalog App", :provider_name_in_pact=>"Stock Service", :json_content=>"{\n  \"consumer\": {\n    \"name\": \"Catalog App\"\n  },\n  \"provider\": {\n    \"name\": \"Stock Service\"\n  },\n  \"interactions\": [\n    {\n      \"description\": \"a request for a t-shirt\",\n      \"provider_state\": \"a t-shirt exists\",\n      \"request\": {\n        \"method\": \"get\",\n        \"path\": \"/t-shirt/surfer-t-shirt\",\n        \"query\": \"\"\n      },\n      \"response\": {\n        \"status\": 200,\n        \"headers\": {\n          \"Content-Type\": \"application/json\"\n        },\n        \"body\": {\n          \"name\": \"surfer-t-shirt\"\n        }\n      }\n    },\n    {\n      \"description\": \"a request for a t-shirt\",\n      \"provider_state\": \"there is not a t-shirt with name surfer-t-shirt\",\n      \"request\": {\n        \"method\": \"get\",\n        \"path\": \"/t-shirt/surfer-t-shirt\",\n        \"headers\": {\n          \"Accept\": \"application/json\"\n        }\n      },\n      \"response\": {\n        \"status\": 404,\n        \"headers\": {\n        }\n      }\n    },\n    {\n      \"description\": \"a request for an t-shirt\",\n      \"provider_state\": \"an error occurs retrieving a t-shirt\",\n      \"request\": {\n        \"method\": \"get\",\n        \"path\": \"/t-shirt/surfer-t-shirt\",\n        \"headers\": {\n          \"Accept\": \"application/json\"\n        }\n      },\n      \"response\": {\n        \"status\": 500,\n        \"headers\": {\n          \"Content-Type\": \"application/json\"\n        },\n        \"body\": {\n          \"error\": \"Argh!!!\"\n        }\n      }\n    }\n  ],\n  \"metadata\": {\n    \"pactSpecificationVersion\": \"1.0.0\"\n  }\n}"}
+I, [2016-10-26T12:44:11.383144 #27621]  INFO -- : (0.000100s) SELECT * FROM `pact_version_contents` WHERE (`sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c') LIMIT 1
+D, [2016-10-26T12:44:11.383176 #27621] DEBUG -- : Creating new PactVersionContent for sha 7c50819e692ac98f32c10bcf60957b8ed2ab3d1c
+I, [2016-10-26T12:44:11.383649 #27621]  INFO -- : (0.000021s) BEGIN
+I, [2016-10-26T12:44:11.384691 #27621]  INFO -- : (0.000822s) INSERT INTO `pact_version_contents` (`content`, `sha`, `created_at`, `updated_at`) VALUES ('{
+  "consumer": {
+    "name": "Catalog App"
+  },
+  "provider": {
+    "name": "Stock Service"
+  },
+  "interactions": [
+    {
+      "description": "a request for a t-shirt",
+      "provider_state": "a t-shirt exists",
+      "request": {
+        "method": "get",
+        "path": "/t-shirt/surfer-t-shirt",
+        "query": ""
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "surfer-t-shirt"
+        }
+      }
+    },
+    {
+      "description": "a request for a t-shirt",
+      "provider_state": "there is not a t-shirt with name surfer-t-shirt",
+      "request": {
+        "method": "get",
+        "path": "/t-shirt/surfer-t-shirt",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+        }
+      }
+    },
+    {
+      "description": "a request for an t-shirt",
+      "provider_state": "an error occurs retrieving a t-shirt",
+      "request": {
+        "method": "get",
+        "path": "/t-shirt/surfer-t-shirt",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 500,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "error": "Argh!!!"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "1.0.0"
+  }
+}', '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c', '2016-10-26 10:44:11.383552', '2016-10-26 10:44:11.383552')
+I, [2016-10-26T12:44:11.385164 #27621]  INFO -- : (0.000262s) SELECT * FROM `pact_version_contents` WHERE (`sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c') LIMIT 1
+I, [2016-10-26T12:44:11.385845 #27621]  INFO -- : (0.000619s) COMMIT
+I, [2016-10-26T12:44:11.386472 #27621]  INFO -- : (0.000022s) BEGIN
+I, [2016-10-26T12:44:11.386866 #27621]  INFO -- : (0.000200s) INSERT INTO `pacts` (`version_id`, `provider_id`, `pact_version_content_sha`, `created_at`, `updated_at`) VALUES (3, 3, '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c', '2016-10-26 10:44:11.386373', '2016-10-26 10:44:11.386373')
+I, [2016-10-26T12:44:11.387226 #27621]  INFO -- : (0.000214s) SELECT * FROM `pacts` WHERE (`id` = 3) LIMIT 1
+I, [2016-10-26T12:44:11.387923 #27621]  INFO -- : (0.000650s) COMMIT
+I, [2016-10-26T12:44:11.388290 #27621]  INFO -- : (0.000228s) SELECT * FROM `pacticipants` WHERE `id` = 3
+I, [2016-10-26T12:44:11.388638 #27621]  INFO -- : (0.000209s) SELECT * FROM `versions` WHERE `id` = 3
+I, [2016-10-26T12:44:11.388956 #27621]  INFO -- : (0.000183s) SELECT * FROM `pacticipants` WHERE `id` = 4
+I, [2016-10-26T12:44:11.389616 #27621]  INFO -- : (0.000369s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:44:11.390273 #27621]  INFO -- : (0.000256s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (consumer_version_order < 0)) ORDER BY `consumer_version_order` DESC LIMIT 1
+I, [2016-10-26T12:44:26.323103 #27621]  INFO -- : (0.000836s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:44:30.708620 #27621]  INFO -- : (0.000548s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:44:30.722008 #27621]  INFO -- : (0.012947s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:44:34.119399 #27621]  INFO -- : (0.000572s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Stock Service' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:44:34.123970 #27621]  INFO -- : (0.003901s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:45:02.108618 #27621]  INFO -- : (0.001527s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:45:04.027395 #27621]  INFO -- : (0.001465s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:45:44.615629 #27621]  INFO -- : (0.000804s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:45:54.493785 #27621]  INFO -- : (0.001250s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:45:54.496619 #27621]  INFO -- : (0.002437s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:46:44.217569 #27621]  INFO -- : (0.000066s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:46:44.218204 #27621]  INFO -- : (0.000201s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:46:44.218283 #27621]  INFO -- : (0.001670s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (`consumer_version_number` LIKE '1.0.0' ESCAPE '\')) LIMIT 1
+I, [2016-10-26T12:46:44.233938 #27621]  INFO -- : (0.000079s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:46:44.234222 #27621]  INFO -- : (0.000165s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:46:44.234288 #27621]  INFO -- : (0.001427s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (`consumer_version_number` LIKE '1.0.0' ESCAPE '\')) LIMIT 1
+I, [2016-10-26T12:46:44.234698 #27621]  INFO -- : (0.000205s) SELECT `name` FROM `pacticipants` ORDER BY `name`
+I, [2016-10-26T12:46:44.234900 #27621]  INFO -- : (0.000099s) SELECT `name` FROM `pacticipants` ORDER BY `name`
+I, [2016-10-26T12:46:44.235702 #27621]  INFO -- : (0.000225s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Stock Service' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:46:44.236503 #27621]  INFO -- : (0.000575s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:46:44.236924 #27621]  INFO -- : (0.000230s) SELECT * FROM `versions` WHERE ((`number` = '1.0.0') AND (`pacticipant_id` = 4)) LIMIT 1
+I, [2016-10-26T12:46:44.237907 #27621]  INFO -- : (0.000066s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:46:44.238512 #27621]  INFO -- : (0.000499s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:46:44.238587 #27621]  INFO -- : (0.001514s) SELECT * FROM `all_pacts` WHERE ((`consumer_version_id` = 3) AND (`provider_id` = 3)) LIMIT 1
+I, [2016-10-26T12:46:44.238661 #27621]  INFO -- : Updating existing pact version with params {:consumer_name=>"Catalog App", :provider_name=>"Stock Service", :consumer_version_number=>"1.0.0", :consumer_name_in_pact=>"Catalog App", :provider_name_in_pact=>"Stock Service", :json_content=>"{\n  \"consumer\": {\n    \"name\": \"Catalog App\"\n  },\n  \"provider\": {\n    \"name\": \"Stock Service\"\n  },\n  \"interactions\": [\n    {\n      \"description\": \"a request for a t-shirt\",\n      \"provider_state\": \"a t-shirt exists\",\n      \"request\": {\n        \"method\": \"get\",\n        \"path\": \"/t-shirt/surfer-t-shirt\",\n        \"query\": \"\"\n      },\n      \"response\": {\n        \"status\": 200,\n        \"headers\": {\n          \"Content-Type\": \"application/json\"\n        },\n        \"body\": {\n          \"name\": \"surfer-t-shirt\"\n        }\n      }\n    },\n    {\n      \"description\": \"a request for a t-shirt\",\n      \"provider_state\": \"there is not a t-shirt with name surfer-t-shirt\",\n      \"request\": {\n        \"method\": \"get\",\n        \"path\": \"/t-shirt/surfer-t-shirt\",\n        \"headers\": {\n          \"Accept\": \"application/json\"\n        }\n      },\n      \"response\": {\n        \"status\": 404,\n        \"headers\": {\n        }\n      }\n    },\n    {\n      \"description\": \"a request for an t-shirt\",\n      \"provider_state\": \"an error occurs retrieving a t-shirt\",\n      \"request\": {\n        \"method\": \"get\",\n        \"path\": \"/t-shirt/surfer-t-shirt\",\n        \"headers\": {\n          \"Accept\": \"application/json\"\n        }\n      },\n      \"response\": {\n        \"status\": 500,\n        \"headers\": {\n          \"Content-Type\": \"application/json\"\n        },\n        \"body\": {\n          \"error\": \"Argh!!!\"\n        }\n      }\n    }\n  ],\n  \"metadata\": {\n    \"pactSpecificationVersion\": \"1.0.0\"\n  }\n}"}
+I, [2016-10-26T12:46:44.239252 #27621]  INFO -- : (0.000287s) SELECT * FROM `pacts` WHERE (`id` = 3) LIMIT 1
+I, [2016-10-26T12:46:44.239545 #27621]  INFO -- : (0.000182s) SELECT * FROM `pact_version_contents` WHERE (`sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c') LIMIT 1
+I, [2016-10-26T12:46:44.240207 #27621]  INFO -- : (0.000186s) SELECT * FROM `pacticipants` WHERE `id` = 3
+I, [2016-10-26T12:46:44.240459 #27621]  INFO -- : (0.000175s) SELECT * FROM `versions` WHERE `id` = 3
+I, [2016-10-26T12:46:44.241030 #27621]  INFO -- : (0.000498s) SELECT * FROM `pacticipants` WHERE `id` = 4
+I, [2016-10-26T12:46:44.241204 #27621]  INFO -- : (0.000078s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:46:51.067679 #27621]  INFO -- : (0.000469s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:46:51.071245 #27621]  INFO -- : (0.002016s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:46:54.155046 #27621]  INFO -- : (0.000428s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\')) ORDER BY `consumer_version_order` DESC LIMIT 1
+I, [2016-10-26T12:46:54.155361 #27621]  INFO -- : (0.000082s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:46:54.155646 #27621]  INFO -- : (0.000172s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:47:03.332582 #27621]  INFO -- : (0.000155s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:47:03.333093 #27621]  INFO -- : (0.000268s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:47:03.333212 #27621]  INFO -- : (0.001523s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (`consumer_version_number` LIKE '1.0.0' ESCAPE '\')) LIMIT 1
+I, [2016-10-26T12:47:57.359776 #27621]  INFO -- : (0.000805s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:48:01.056307 #27621]  INFO -- : (0.000500s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\')) ORDER BY `consumer_version_order` DESC LIMIT 1
+I, [2016-10-26T12:48:01.056707 #27621]  INFO -- : (0.000096s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:48:01.057049 #27621]  INFO -- : (0.000231s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:48:07.180793 #27621]  INFO -- : (0.000619s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:48:07.182456 #27621]  INFO -- : (0.001337s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:48:09.090307 #27621]  INFO -- : (0.002028s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Stock Service' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:48:09.092251 #27621]  INFO -- : (0.001591s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:48:11.959740 #27621]  INFO -- : (0.000388s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:48:11.961568 #27621]  INFO -- : (0.001516s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:48:15.244428 #27621]  INFO -- : (0.000335s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Stock Service' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:48:15.246276 #27621]  INFO -- : (0.001588s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:48:20.442849 #27621]  INFO -- : (0.000488s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\')) ORDER BY `consumer_version_order` DESC LIMIT 1
+I, [2016-10-26T12:48:20.443160 #27621]  INFO -- : (0.000095s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:48:20.443469 #27621]  INFO -- : (0.000199s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:49:50.981646 #27621]  INFO -- : (0.000100s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:49:50.983232 #27621]  INFO -- : (0.000351s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T12:49:50.983354 #27621]  INFO -- : (0.002398s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\') AND (`consumer_version_number` LIKE '1.0.0' ESCAPE '\')) LIMIT 1
+I, [2016-10-26T12:50:01.140992 #27621]  INFO -- : (0.000750s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:50:02.337973 #27621]  INFO -- : (0.000595s) SELECT * FROM `pacticipants` WHERE (`name` LIKE 'Catalog App' ESCAPE '\') LIMIT 1
+I, [2016-10-26T12:50:02.339129 #27621]  INFO -- : (0.000888s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T12:50:06.174601 #27621]  INFO -- : (0.000435s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\')) ORDER BY `consumer_version_order` DESC LIMIT 1
+I, [2016-10-26T12:50:06.174967 #27621]  INFO -- : (0.000150s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T12:50:06.175279 #27621]  INFO -- : (0.000198s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T11:57:31.117921 #5]  INFO -- : Migrating database
+I, [2016-10-26T11:57:31.145097 #5]  INFO -- : (0.008371s) PRAGMA foreign_keys = 1
+I, [2016-10-26T11:57:31.145516 #5]  INFO -- : (0.000041s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T11:57:31.146010 #5]  INFO -- : (0.000095s) SELECT sqlite_version()
+I, [2016-10-26T11:57:31.151371 #5]  INFO -- : (0.004770s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T11:57:31.157367 #5]  INFO -- : (0.005366s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:57:31.163690 #5]  INFO -- : (0.005649s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:57:31.170164 #5]  INFO -- : (0.005755s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:57:31.175762 #5]  INFO -- : (0.004990s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T11:57:31.176282 #5]  INFO -- : Mounting HAL browser
+I, [2016-10-26T11:57:31.176570 #5]  INFO -- : Mounting UI
+I, [2016-10-26T11:57:31.378963 #5]  INFO -- : (0.007141s) PRAGMA table_info('pacticipants')
+I, [2016-10-26T11:57:31.389580 #5]  INFO -- : (0.006623s) PRAGMA table_info('tags')
+I, [2016-10-26T11:57:31.400418 #5]  INFO -- : (0.007414s) PRAGMA table_info('versions')
+I, [2016-10-26T11:57:31.417332 #5]  INFO -- : (0.005656s) PRAGMA table_info('pact_version_contents')
+I, [2016-10-26T11:57:31.423829 #5]  INFO -- : (0.004688s) PRAGMA table_info('pacts')
+I, [2016-10-26T11:57:31.434504 #5]  INFO -- : (0.007152s) PRAGMA table_info('all_pacts')
+I, [2016-10-26T11:57:31.443605 #5]  INFO -- : (0.005900s) PRAGMA table_info('latest_pacts')
+I, [2016-10-26T11:57:31.456151 #5]  INFO -- : (0.009737s) PRAGMA table_info('latest_tagged_pacts')
+I, [2016-10-26T11:57:31.572865 #5]  INFO -- : (0.006927s) PRAGMA table_info('webhooks')
+I, [2016-10-26T11:57:31.579981 #5]  INFO -- : (0.005118s) PRAGMA table_info('webhook_headers')
+I, [2016-10-26T11:57:31.606259 #5]  INFO -- : Mounting PactBroker::API
+I, [2016-10-26T11:57:34.384206 #5]  INFO -- : (0.007928s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T11:57:37.608113 #5]  INFO -- : (0.007790s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T11:57:49.200273 #5]  INFO -- : (0.006936s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T11:57:51.530874 #5]  INFO -- : (0.004648s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T11:57:54.209768 #5]  INFO -- : (0.010219s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T11:58:23.019514 #5]  INFO -- : (0.002867s) SELECT * FROM `all_pacts` WHERE ((`consumer_name` LIKE 'Catalog App' ESCAPE '\') AND (`provider_name` LIKE 'Stock Service' ESCAPE '\')) ORDER BY `consumer_version_order` DESC LIMIT 1
+I, [2016-10-26T11:58:23.031939 #5]  INFO -- : (0.003354s) SELECT * FROM `tags` WHERE (`tags`.`version_id` = 3)
+I, [2016-10-26T11:58:23.036802 #5]  INFO -- : (0.003440s) SELECT * FROM `pact_version_contents` WHERE `sha` = '7c50819e692ac98f32c10bcf60957b8ed2ab3d1c'
+I, [2016-10-26T13:02:49.734378 #6]  INFO -- : Migrating database
+I, [2016-10-26T13:02:49.756347 #6]  INFO -- : (0.003023s) PRAGMA foreign_keys = 1
+I, [2016-10-26T13:02:49.756842 #6]  INFO -- : (0.000035s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T13:02:49.757368 #6]  INFO -- : (0.000091s) SELECT sqlite_version()
+I, [2016-10-26T13:02:49.759871 #6]  INFO -- : (0.001859s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T13:02:49.762019 #6]  INFO -- : (0.001660s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:02:49.764256 #6]  INFO -- : (0.001601s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:02:49.775253 #6]  INFO -- : (0.010495s) INSERT INTO `schema_info` (`version`) VALUES (0)
+I, [2016-10-26T13:02:49.777626 #6]  INFO -- : (0.001751s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:02:49.780222 #6]  INFO -- : (0.002011s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:02:49.791580 #6]  INFO -- : Begin applying migration version 1, direction: up
+E, [2016-10-26T13:02:49.792410 #6] ERROR -- : SQLite3::SQLException: table `pacticipants` already exists: CREATE TABLE `pacticipants` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `name` varchar(255) UNIQUE, `repository_url` varchar(255))
+I, [2016-10-26T13:11:15.952296 #5]  INFO -- : Migrating database
+I, [2016-10-26T13:11:15.978839 #5]  INFO -- : (0.003640s) PRAGMA foreign_keys = 1
+I, [2016-10-26T13:11:15.979367 #5]  INFO -- : (0.000037s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T13:11:15.979923 #5]  INFO -- : (0.000097s) SELECT sqlite_version()
+I, [2016-10-26T13:11:15.982514 #5]  INFO -- : (0.001884s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T13:11:15.984749 #5]  INFO -- : (0.001760s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:11:15.986917 #5]  INFO -- : (0.001552s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:11:15.988930 #5]  INFO -- : (0.001465s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:11:15.990911 #5]  INFO -- : (0.001554s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:11:16.003190 #5]  INFO -- : Begin applying migration version 1, direction: up
+E, [2016-10-26T13:11:16.004076 #5] ERROR -- : SQLite3::SQLException: table `pacticipants` already exists: CREATE TABLE `pacticipants` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `name` varchar(255) UNIQUE, `repository_url` varchar(255))
+I, [2016-10-26T13:12:28.535390 #5]  INFO -- : Migrating database
+I, [2016-10-26T13:12:28.557496 #5]  INFO -- : (0.002868s) PRAGMA foreign_keys = 1
+I, [2016-10-26T13:12:28.557902 #5]  INFO -- : (0.000047s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T13:12:28.558425 #5]  INFO -- : (0.000093s) SELECT sqlite_version()
+I, [2016-10-26T13:12:28.560550 #5]  INFO -- : (0.001551s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T13:12:28.562830 #5]  INFO -- : (0.001777s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:12:28.565508 #5]  INFO -- : (0.002030s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:12:28.567941 #5]  INFO -- : (0.001797s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:12:28.571046 #5]  INFO -- : (0.002279s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:12:28.571892 #5]  INFO -- : Begin applying migration version 22, direction: up
+E, [2016-10-26T13:12:28.573859 #5] ERROR -- : SQLite3::SQLException: no such view: latest_tagged_pact_consumer_version_orders: DROP VIEW `latest_tagged_pact_consumer_version_orders`
+I, [2016-10-26T13:12:28.588360 #5]  INFO -- : (0.013858s) CREATE VIEW `latest_tagged_pact_consumer_version_orders` AS select provider_id, consumer_id, t.name as tag_name, max(consumer_version_order) as latest_consumer_version_order
+      from all_pacts ap
+      inner join tags t
+      on t.version_id = ap.consumer_version_id
+      group by provider_id, consumer_id, t.name
+E, [2016-10-26T13:12:28.590520 #5] ERROR -- : SQLite3::SQLException: no such view: latest_tagged_pacts: DROP VIEW `latest_tagged_pacts`
+I, [2016-10-26T13:12:28.601704 #5]  INFO -- : (0.010636s) CREATE VIEW `latest_tagged_pacts` AS select ap.*, lp.tag_name
+      from all_pacts ap
+      inner join latest_tagged_pact_consumer_version_orders lp
+      on ap.consumer_id = lp.consumer_id
+        and ap.provider_id = lp.provider_id
+        and ap.consumer_version_order = latest_consumer_version_order
+I, [2016-10-26T13:12:28.613063 #5]  INFO -- : (0.010770s) UPDATE `schema_info` SET `version` = 22
+I, [2016-10-26T13:12:28.613562 #5]  INFO -- : Finished applying migration version 22, direction: up, took 0.041666 seconds
+I, [2016-10-26T13:12:28.614023 #5]  INFO -- : Mounting HAL browser
+I, [2016-10-26T13:12:28.614438 #5]  INFO -- : Mounting UI
+I, [2016-10-26T13:12:28.826378 #5]  INFO -- : (0.002425s) PRAGMA table_info('pacticipants')
+I, [2016-10-26T13:12:28.832556 #5]  INFO -- : (0.002366s) PRAGMA table_info('tags')
+I, [2016-10-26T13:12:28.838721 #5]  INFO -- : (0.002380s) PRAGMA table_info('versions')
+I, [2016-10-26T13:12:28.849739 #5]  INFO -- : (0.002711s) PRAGMA table_info('pact_version_contents')
+I, [2016-10-26T13:12:28.854113 #5]  INFO -- : (0.002432s) PRAGMA table_info('pacts')
+I, [2016-10-26T13:12:28.859712 #5]  INFO -- : (0.002562s) PRAGMA table_info('all_pacts')
+I, [2016-10-26T13:12:28.865482 #5]  INFO -- : (0.002853s) PRAGMA table_info('latest_pacts')
+I, [2016-10-26T13:12:28.869794 #5]  INFO -- : (0.002490s) PRAGMA table_info('latest_tagged_pacts')
+I, [2016-10-26T13:12:28.992788 #5]  INFO -- : (0.002258s) PRAGMA table_info('webhooks')
+I, [2016-10-26T13:12:28.997401 #5]  INFO -- : (0.002168s) PRAGMA table_info('webhook_headers')
+I, [2016-10-26T13:12:29.021749 #5]  INFO -- : Mounting PactBroker::API
+I, [2016-10-26T13:12:35.010961 #5]  INFO -- : (0.004431s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T13:22:01.939715 #5]  INFO -- : (0.005448s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T13:22:07.883416 #5]  INFO -- : (0.003847s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T13:22:48.053099 #6]  INFO -- : Migrating database
+I, [2016-10-26T13:22:48.066089 #6]  INFO -- : (0.003467s) PRAGMA foreign_keys = 1
+I, [2016-10-26T13:22:48.066574 #6]  INFO -- : (0.000037s) PRAGMA case_sensitive_like = 1
+I, [2016-10-26T13:22:48.067145 #6]  INFO -- : (0.000101s) SELECT sqlite_version()
+I, [2016-10-26T13:22:48.069465 #6]  INFO -- : (0.001713s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2016-10-26T13:22:48.071327 #6]  INFO -- : (0.001398s) SELECT * FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:22:48.073657 #6]  INFO -- : (0.001508s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:22:48.076161 #6]  INFO -- : (0.001856s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:22:48.078389 #6]  INFO -- : (0.001660s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2016-10-26T13:22:48.078955 #6]  INFO -- : Mounting HAL browser
+I, [2016-10-26T13:22:48.079271 #6]  INFO -- : Mounting UI
+I, [2016-10-26T13:22:48.277353 #6]  INFO -- : (0.002227s) PRAGMA table_info('pacticipants')
+I, [2016-10-26T13:22:48.283471 #6]  INFO -- : (0.002182s) PRAGMA table_info('tags')
+I, [2016-10-26T13:22:48.288878 #6]  INFO -- : (0.002168s) PRAGMA table_info('versions')
+I, [2016-10-26T13:22:48.300282 #6]  INFO -- : (0.002312s) PRAGMA table_info('pact_version_contents')
+I, [2016-10-26T13:22:48.304466 #6]  INFO -- : (0.002209s) PRAGMA table_info('pacts')
+I, [2016-10-26T13:22:48.310124 #6]  INFO -- : (0.002389s) PRAGMA table_info('all_pacts')
+I, [2016-10-26T13:22:48.315653 #6]  INFO -- : (0.002323s) PRAGMA table_info('latest_pacts')
+I, [2016-10-26T13:22:48.319860 #6]  INFO -- : (0.002387s) PRAGMA table_info('latest_tagged_pacts')
+I, [2016-10-26T13:22:48.430379 #6]  INFO -- : (0.002199s) PRAGMA table_info('webhooks')
+I, [2016-10-26T13:22:48.434333 #6]  INFO -- : (0.001929s) PRAGMA table_info('webhook_headers')
+I, [2016-10-26T13:22:48.463477 #6]  INFO -- : Mounting PactBroker::API
+I, [2016-10-26T13:22:53.897987 #6]  INFO -- : (0.002984s) SELECT * FROM `latest_pacts`
+I, [2016-10-26T13:22:59.398393 #6]  INFO -- : (0.002060s) SELECT * FROM `latest_pacts`
